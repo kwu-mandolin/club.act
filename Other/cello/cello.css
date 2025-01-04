@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 縦方向を上に寄せる */
+    padding-top: 50px; /* 上からの余白を追加 */
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.menu-title {
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.shop-container {
+    width: 800px;
+    height: 600px;
+    display: grid;
+    grid-template-rows: 1fr 2fr 3fr;
+    grid-template-columns: 2fr 1fr;
+    border: 2px solid #333;
+    background-color: #fff;
+}
+
+.menu-section {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    padding: 20px;
+    border: 2px solid #333;
+    margin: 10px;
+    margin-left: 250px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.menu-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/*商品名表示(枠内)*/
+.menu-section li {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    padding-left: 30px;
+    margin-top: 15px;
+}
+
+/* 商品名と金額にホバー時の文字色を追加 */
+.menu-section li:hover  span{
+    color: blue; /* ホバー時に文字色を変更 */
+  }
+
+/* 商品名にホバー時に説明を表示 */
+.menu-section li:hover .item-description {
+    display: inline; /* 商品説明を表示 */
+    color: black; /* 説明の文字色*/
+  }
+
+.item-name {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.item-description {
+    font-size: 14px;
+    color: #555;
+    margin-left: 10px;
+    visibility: hidden;
+    /* 初期状態は非表示 */
+}
+
+.item-name:hover+.item-description {
+    visibility: visible;
+    /* ホバー時に表示 */
+}
+
+.menu-section li span:last-child {
+    margin-right: 20px;
+}
+
+.counter-section {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    position: relative;
+    height: 270px;
+    top: 10px;
+    width: 100%; /* 親要素の幅に合わせる */
+    margin-left: -2px; /* 左にずらす */
+    border: 2px solid #333;
+}
+
+.speech-bubble {
+    position: absolute;
+    background: #fff;
+    border: 2px solid #333;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    font-size: 18px;
+    color: #000;
+    z-index: 10; /* 他の要素より前面に表示 */
+    width: 70%;
+    text-align: center;
+    /* 配置 */
+    bottom: 100px;
+}

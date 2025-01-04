@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5; /* 背景色を灰色がかった色に変更 */
+}
+
+#main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px; /* 上下左右に余白を追加 */
+  margin: 20px; /* ページ全体に余白を追加 */
+  background-color: #ffffff; /* コンテンツ背景を白に設定 */
+  border-radius: 10px; /* 角を丸くして柔らかい印象に */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+}
+
+#flower-container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 300px;
+}
+
+#flowers {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 50px;
+  max-height: 100px;
+}
+
+#flowers .flower:nth-child(n + 6) { /* 6番目以降（2段目）に対して */
+  margin-top: 60px; /* 2段目を下に移動 */
+}
+
+.flower {
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  width: 120px; /* 少し幅を広げる */
+  word-wrap: break-word; /* 内容を省略せず改行 */
+  background-color: #f9f9f9; /* 背景を白っぽい灰色に */
+  border-radius: 5px; /* 角を丸くする */
+}
+
+.flower.selected {
+  background-color: #f0f8ff;
+  border: 2px solid #00f;
+}
+
+#flower-display {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#flower-image {
+  width: 220px; /* 画像サイズ幅 */
+  height: 220px; /* 画像サイズ高さ */
+  border: 1px solid #ddd;
+  border-radius: 10px; /* 画像の角を丸く */
+  background-color: #f5f5f5;
+  object-fit: cover;
+  padding: 20px; /* 画像の上下左右に余白を追加 */
+  display: inline-block; /* 余白が正しく反映されるように */
+  visibility: hidden; /* 初期状態で画像を非表示 */
+}
+
+#flower-image.show {
+  visibility: visible; /* 画像が表示される状態 */
+}
+
+#flower-details {
+  margin-top: 10px;
+  font-size: 1.2em; /* 詳細テキストを少し大きく */
+  text-align: center;
+}
+
+#request {
+  font-size: 1.5em;
+  margin: 10px 0;
+  text-align: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-top: 2px solid #ddd;
+  border-radius: 5px; /* 角を丸くする */
+}
+
+#bouquet {
+  border: 2px dashed #aaa;
+  padding: 20px;
+  min-height: 50px;
+  margin: 10px 20px; /* 左右に余白を追加 */
+  background-color: #ffffff; /* 背景を白に設定 */
+  border-radius: 10px; /* 角を丸くする */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+  display: flex;         /* 横並びにする */
+  gap: 10px;
+}
+
+button {
+  margin: 10px 20px; /* 左右に余白を追加 */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#result {
+  margin: 10px 20px; /* 左右に余白を追加 */
+  font-size: 1.2em;
+  text-align: center;
+}

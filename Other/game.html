@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Game</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+<h1>選択してください</h1>
+<div id="popup" onclick="closePopup()">どこに行きますか？</div>
+
+<div id="map">
+    <div id="center" class="location" onclick="goToLocation('広場')" style="background-image: url('plaza.png');">広場</div>
+    <div id="fortune" class="location" onclick="goToLocation('占いの館')" style="background-image: url('fortune_teller.png');">占い</div>
+    <div id="circus" class="location" onclick="goToLocation('サーカス')" style="background-image: url('circus.png');">サーカス</div>
+    <div id="bar" class="location" onclick="goToLocation('バー')" style="background-image: url('bar.png');">バー</div>
+    <div id="flower" class="location" onclick="goToLocation('花屋')" style="background-image: url('flower_shop.png');">花屋</div>
+    <div id="party" class="location" onclick="goToLocation('パーティー会場')" style="background-image: url('party_venue.png');">パーティー</div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

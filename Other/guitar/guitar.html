@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>guitar</title>
+  <link rel="stylesheet" href="guitar.css">
+</head>
+<body>
+  <div id="main-container">
+    <!-- 左上: 花の選択肢 -->
+    <div id="flower-container">
+      <div id="flowers">
+        <!-- 花を生成する -->
+      </div>
+    </div>
+
+    <!-- 右上: 花の画像と情報 -->
+    <div id="flower-display">
+      <img id="flower-image" src="" alt="イメージ">
+      <div id="flower-details"></div>
+    </div>
+  </div>
+
+  <!-- 下部: 依頼内容 -->
+  <div id="request"></div>
+
+  <!-- 花束作成エリアとボタン -->
+  <div id="bouquet">あなたが選んだ花</div>
+  <button id="evaluate" disabled>評価する</button>
+  <div id="result"></div>
+
+  <script src="guitar.js"></script>
+</body>
+</html>

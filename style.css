@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+/*リセット用*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #e6e6e6;
+    /*c295bc*/
+}
+
+header {
+    /*ヘッダーの余白*/
+    width: 100%;
+    padding: 30px 4% 10px;
+    background-color: #fff;
+    /*ヘッダー一固定(上部)*/
+    position: fixed;
+    top: 0;
+    /*タイトルとナビを横並びにする*/
+    display: flex;
+    align-items: center;
+}
+
+/*タイトルの文字サイズと余白*/
+h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+/*リンクの見た目設定*/
+a {
+    text-decoration: none;
+    color: #4b4b4b;
+}
+
+a.login {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+a.sign {
+    text-decoration: underline;
+    color: rgb(37, 37, 151);
+}
+
+
+ul {
+    /*ナビの"・"を削除*/
+    list-style: none;
+    margin: 0;
+    /*各項目を横並びに*/
+    display: flex;
+}
+
+/*ナビの余白調整*/
+li {
+    margin: 0 0 0 15px;
+    font-size: 14px;
+}
+
+/*タイトルとナビの表示位置(上右下左)*/
+nav {
+    margin: 0 0 0 auto;
+}
+
+/*Xタイムライン調整*/
+.timeline {
+    max-width: 60%;
+    margin-left: 35%;
+    margin-right: 5%;
+    margin-top: 10%;
+}
+
+/*囲み枠　四角丸枠*/
+.box {
+    padding: 0.5em 1em;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 5%;
+    font-weight: bold;
+    color: #4b4b4b;
+    /*文字色*/
+    background: #FFF;
+    border: solid 3px #4b4b4b;
+    /*線*/
+    border-radius: 10px;
+    /*角の丸み*/
+}
+
+/*囲み枠文字との余白*/
+.box p {
+    margin: 0;
+    padding: 0;
+}
+
+.fsize {
+    font-size: 24px;
+    text-align: center;
+}
+
+/*内容用囲み枠　四角丸枠*/
+.png {
+    width: 700px;
+    height: 450px;
+    margin-top: 1%;
+    margin-left: 30%;
+    margin-right: 5%;
+    font-weight: bold;
+    color: #4b4b4b;
+    /*文字色*/
+    background: #FFF;
+    border: solid 1px #4b4b4b;
+    /*線*/
+    border-radius: 10px;
+    /*角の丸み*/
+}
+
+.center {
+    width: 370px;
+    height: 370px;
+    margin-left: 25%;
+    top: 20%;
+}
+
+.info {
+    margin-left: 14%;
+    font-size: 13px;
+}
+
+/*囲み枠　四角丸枠2つ目*/
+.box2 {
+    padding: 0.5em 1em;
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 5%;
+    font-weight: bold;
+    color: #4b4b4b;
+    /*文字色*/
+    background: #FFF;
+    border: solid 3px #4b4b4b;
+    /*線*/
+    border-radius: 10px;
+    /*角の丸み*/
+}
+
+/*囲み枠文字との余白2つ目*/
+.box2 p {
+    margin: 0;
+    padding: 0;
+}
+
+/*OGお知らせ用*/
+details {
+    margin-top: 1%;
+    margin-left: 31%;
+    font-size: 16px;
+    font: 'Noto Sans JP', sans-serif;
+}
+
+details>summary {
+    padding: 8px 10px;
+    width: 50%;
+    background-color: #FFF;
+    border: solid 1px #4b4b4b;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+details>p {
+    padding: 5px 10px;
+    margin: 0;
+    margin-top: 1%;
+    width: 90%;
+    border: solid 1px #4b4b4b;
+    background-color: #FFF;
+}
+
+details[open]>summary {
+    background-color: rgb(224, 224, 248);
+}
+
+/*Q&Aボタン*/
+.fix-btn {
+    position: fixed;
+    /*配置設定-fixed指定で追従*/
+    z-index: 1;
+    margin-left: 5%;
+    bottom: 50px;
+    padding: 5px 10px;
+    border: solid 1px #4b4b4b;
+    border-radius: 10px;
+}
+
+/*ゲーム用*/
+.center-game {
+    width: 45%;
+    height: 65%;
+    margin-left: 30%;
+    margin-top: -1%;
+    background-size: 300px 300px;
+}
+
+/*内容用囲み枠　四角丸枠*/
+.png2 {
+    width: 700px;
+    height: 100px;
+    margin-top: 1%;
+    margin-left: 30%;
+    margin-right: 5%;
+    font-weight: bold;
+    color: #4b4b4b;
+    /*文字色*/
+    background: #FFF;
+    border: solid 1px #4b4b4b;
+    /*線*/
+    border-radius: 10px;
+    /*角の丸み*/
+}

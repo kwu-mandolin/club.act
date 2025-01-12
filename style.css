@@ -191,7 +191,7 @@ details[open]>summary {
     /*配置設定-fixed指定で追従*/
     z-index: 1;
     margin-left: 5%;
-    bottom: 50px;
+    top: 17%;
     padding: 5px 10px;
     border: solid 1px #4b4b4b;
     border-radius: 10px;
@@ -221,4 +221,32 @@ details[open]>summary {
     /*線*/
     border-radius: 10px;
     /*角の丸み*/
+}
+
+.png3 {
+    width: 700px;
+    height: 450px;
+    margin-top: 1%;
+    margin-left: 30%;
+    margin-right: 5%;
+    font-weight: bold;
+    color: #4b4b4b;
+    /*文字色*/
+    background: #FFF;
+    border: solid 1px #4b4b4b;
+    /*線*/
+    border-radius: 10px;
+    /*角の丸み*/
+}
+
+.sns-btn {
+    display: flex;
+    position: fixed;
+    margin-top: 550px; 
+    margin-left: 0%;
+}
+
+.sns-btn li {
+    margin-left: 30px;
+    margin-right: 25px;
 }

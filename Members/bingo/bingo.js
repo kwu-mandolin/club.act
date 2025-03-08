@@ -2,7 +2,7 @@ $(function(){
   "use strict";
 
   var
-    max = 50,
+    max = 75,
     bingo = [],
     status = true,
     roulette,

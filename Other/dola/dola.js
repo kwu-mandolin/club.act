@@ -49,7 +49,7 @@ function endGame() {
     totalScore += score;
     totalScoreDisplay.textContent = totalScore;
 
-    // 合計スコアが300を超えたらカードを獲得
+    // 合計スコアが150を超えたらカードを獲得
     checkForItem(totalScore);
 
     playAgainButton.style.display = "inline-block";

@@ -21,7 +21,7 @@ const targetScores = {
 };
 
 // カード獲得の値
-const ItemThreshold = 0; //現在試作用に0に変更中
+const ItemThreshold = 150; 
 
 // カードが既に獲得されたかを確認
 let ItemEarned = localStorage.getItem("ItemEarned") === "true";

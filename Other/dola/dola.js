@@ -113,7 +113,7 @@ function checkForItem(totalScore) {
         const item = "Drink Card"; // アイテム名
         saveItem(item); // アイテムを保存
         ItemEarned = true; // フラグを更新
-        alert(`総合得点300点達成おめでとう！\n記念にドリンクカードをあげるよ!`);
+        alert(`総合得点150点達成おめでとう！\n記念にドリンクカードをあげるよ!`);
     }
 }
 

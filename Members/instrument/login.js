@@ -1,5 +1,5 @@
 // あなたのGASのURLをここに貼り付けてください
-const GAS_URL = "https://script.google.com/macros/s/【あなたのGASのURL】/exec";
+const GAS_URL = "https://script.google.com/macros/s/AKfycbw914sgXney1cIgYBCYrKkaGa9LPJGXFT9w7AMSBZ9qiHjaYKnftXCszpn-2yrSA1jW/exec";
 
 document.getElementById("loginBtn").addEventListener("click", login);
 

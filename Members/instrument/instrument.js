@@ -112,7 +112,7 @@ document.getElementById('add-btn').addEventListener('click', () => {
 // 削除ボタン（チェックされた行を削除）
 document.getElementById('delete-btn').addEventListener('click', () => {
     const checked = Array.from(document.querySelectorAll('#output input[type="checkbox"]:checked'));
-    if (checked.length === 0) { alert('削除する行を選択してください'); return; }
+    if (checked.length === 0) { alert('削除する楽器を選択してください'); return; }
     if (!confirm('指定した範囲を削除しますか？')) return;
 
     const rowsToDelete = checked.map(cb => Number(cb.dataset.sheetRow));
@@ -167,7 +167,7 @@ document.getElementById('save-edit').addEventListener('click', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updated)
     }).then(() => {
-        alert('更新しました！ページを更新してください！');
+        alert('編集しました！ページを更新してください！');
         document.getElementById('edit-modal').style.display = 'none';
         loadData(document.getElementById('filter-select').value);
     }).catch(err => {

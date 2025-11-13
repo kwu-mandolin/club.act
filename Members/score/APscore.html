@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>スコア管理サイト</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+      padding: 20px;
+    }
+    h1 { margin-bottom: 8px; }
+    form {
+      margin-bottom: 20px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #f9f9f9;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 10px 20px;
+      align-items: center;
+    }
+    label {
+      display: inline-block;
+      width: 70px;
+      font-weight: bold;
+    }
+    input[type="text"], select {
+      width: 150px;
+      padding: 4px 6px;
+    }
+    .form-group {
+      display: flex;
+      align-items: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th { background: #eee; }
+    button {
+      padding: 6px 10px;
+      margin: 3px;
+    }
+    .form-buttons {
+      grid-column: 1 / -1;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎼 スコア管理サイト</h1>
 
+  </div>
+
+  <h2>新規追加／編集</h2>
+  <form id="dataForm" onsubmit="return false;">
+    <input type="hidden" id="row">
+
+    <div class="form-group"><label>番号</label><input type="text" id="number"></div>
+    <div class="form-group"><label>曲名</label><input type="text" id="title"></div>
+    <div class="form-group"><label>作曲家</label><input type="text" id="composer"></div>
+    <div class="form-group"><label>編集者</label><input type="text" id="editor"></div>
+    <div class="form-group"><label>総譜</label><select id="score"><option></option><option>〇</option><option>×</option></select></div>
+    <div class="form-group"><label>1st</label><select id="part1"><option></option><option>〇</option><option>×</option></select></div>
+    <div class="form-group"><label>2nd</label><select id="part2"><option></option><option>〇</option><option>×</option></select></div>
+    <div class="form-group"><label>Dola</label><select id="dola"><option></option><option>〇</option><option>×</option></select></div>
+    <div class="form-group"><label>Cello</label><select id="cello"><option></option><option>〇</option><option>×</option></select></div>
+    <div class="form-group"><label>Guitar</label><select id="guitar"><option></option><option>〇</option><option>×</option></select></div>
+    <div class="form-group"><label>Bass</label><select id="bass"><option></option><option>〇</option><option>×</option></select></div>
+    <div class="form-group"><label>Other</label><input type="text" id="other"></div>
+
+    <div class="form-buttons">
+      <button type="button" onclick="saveData()">追加／更新</button>
+      <button type="button" onclick="resetForm()">フォームをクリア</button>
+    </div>
+  </form>
+  
+  <div id="searchArea" style="margin-bottom: 10px;">
+    <label for="searchInput">曲検索：</label>
+    <input type="text" id="searchInput" placeholder="キーワードを入力">
+    <button onclick="searchTitle()">検索</button>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <button onclick="loadData()">全件表示</button>
+    <button onclick="loadData('削除')">削除のみ</button>
+    <button onclick="loadData('その他')">削除以外</button>
+
+  <table id="scoreTable">
+    <thead>
+      <tr>
+        <th>番号</th>
+        <th>曲名</th>
+        <th>作曲家</th>
+        <th>編集者</th>
+        <th>総譜</th>
+        <th>1st</th>
+        <th>2nd</th>
+        <th>Dola</th>
+        <th>Cello</th>
+        <th>Guitar</th>
+        <th>Bass</th>
+        <th>Other</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="APscore.js"></script>
+</body>
+</html>

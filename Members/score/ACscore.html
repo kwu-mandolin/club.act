@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>AC 譜面管理サイト</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
+  <!-- 譜面管理専用CSS -->
+  <link rel="stylesheet" href="score.css">
+</head>
+
+<body>
+
+  <!-- 全体を統一レイアウトに -->
+  <div class="score-container">
+
+    <!-- タイトル + AP/AC/O ナビゲーション -->
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+      <div class="score-title">AC 譜面管理</div>
+
+      <!-- AP/AC/O 切り替え -->
+      <nav class="score-nav">
+        <a href="APscore.html">AP</a>
+        <a href="ACscore.html">AC</a>
+        <a href="Oscore.html">O</a>
+      </nav>
+    </div>
+
+    <!-- 入力フォーム -->
+    <div class="score-card">
+      <div class="score-title" style="font-size:18px;">新規追加／編集</div>
+
+      <form id="dataForm" onsubmit="return false;">
+        <input type="hidden" id="row">
+
+        <div class="score-row">
+          <label>番号</label>
+          <input type="text" id="number">
+        </div>
+
+        <div class="score-row">
+          <label>曲名</label>
+          <input type="text" id="title">
+        </div>
+
+        <div class="score-row">
+          <label>作曲家</label>
+          <input type="text" id="composer">
+        </div>
+
+        <div class="score-row">
+          <label>編集者</label>
+          <input type="text" id="editor">
+        </div>
+
+        <div class="score-row">
+          <label>総譜</label>
+          <select id="score"><option></option><option>〇</option><option>×</option></select>
+        </div>
+
+        <div class="score-row">
+          <label>1st</label>
+          <select id="part1"><option></option><option>〇</option><option>×</option></select>
+        </div>
+
+        <div class="score-row">
+          <label>2nd</label>
+          <select id="part2"><option></option><option>〇</option><option>×</option></select>
+        </div>
+
+        <div class="score-row">
+          <label>Dola</label>
+          <select id="dola"><option></option><option>〇</option><option>×</option></select>
+        </div>
+
+        <div class="score-row">
+          <label>Cello</label>
+          <select id="cello"><option></option><option>〇</option><option>×</option></select>
+        </div>
+
+        <div class="score-row">
+          <label>Guitar</label>
+          <select id="guitar"><option></option><option>〇</option><option>×</option></select>
+        </div>
+
+        <div class="score-row">
+          <label>Bass</label>
+          <select id="bass"><option></option><option>〇</option><option>×</option></select>
+        </div>
+
+        <div class="score-row">
+          <label>Other</label>
+          <input type="text" id="other">
+        </div>
+
+        <!-- ボタン -->
+        <button class="score-btn" type="button" onclick="saveData()">追加／更新</button>
+        <button class="score-btn" type="button" onclick="resetForm()" style="margin-left:8px; background:#888;">フォームをクリア</button>
+
+      </form>
+    </div>
+
+    <!-- 検索 -->
+    <div class="score-card" style="margin-bottom:20px;">
+      <div class="score-row">
+        <label for="searchInput">曲検索</label>
+        <input type="text" id="searchInput" placeholder="キーワードを入力">
+        <button class="score-btn" onclick="searchTitle()">検索</button>
+      </div>
+      <div style="margin-top:10px;">
+        <button class="score-btn" onclick="loadData()">全件表示</button>
+        <button class="score-btn" onclick="loadData('削除')" style="background:#7a7a7a;">削除のみ</button>
+        <button class="score-btn" onclick="loadData('その他')" style="background:#7a7a7a;">削除以外</button>
+      </div>
+    </div>
+
+    <!-- テーブル -->
+    <table class="score-table" id="scoreTable">
+      <thead>
+        <tr>
+          <th>番号</th>
+          <th>曲名</th>
+          <th>作曲家</th>
+          <th>編集者</th>
+          <th>総譜</th>
+          <th>1st</th>
+          <th>2nd</th>
+          <th>Dola</th>
+          <th>Cello</th>
+          <th>Guitar</th>
+          <th>Bass</th>
+          <th>Other</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+  </div>
+
+  <script src="ACscore.js"></script>
+</body>
+</html>

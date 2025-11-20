@@ -1,4 +1,4 @@
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwRRwPpvl8TsCZnMVfFAvCy807cbhSfov8yn0qo1C4kM1HWA5EJ86IPbjoLt6gPO3XNxA/exec';
+const GAS_URL = 'https://script.google.com/macros/e/AKfycbwRRwPpvl8TsCZnMVfFAvCy807cbhSfov8yn0qo1C4kM1HWA5EJ86IPbjoLt6gPO3XNxA/exec';
 
 let allData = []; // ← 全データを保持しておく
 

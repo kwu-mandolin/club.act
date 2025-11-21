@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ログイン</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    input {
+      padding: 10px;
+      margin: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+    #message {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>部員専用ページ ログイン</h2>
+  <input type="password" id="password" placeholder="パスワードを入力">
+  <br>
+  <button id="loginBtn">ログイン</button>
+  <p id="message"></p>
 
+  <!-- JavaScriptを外部ファイルから読み込み -->
+  <script src="login.js"></script>
+</body>
+</html>

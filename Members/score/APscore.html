@@ -4,21 +4,13 @@
   <meta charset="UTF-8">
   <title>AP 譜面管理サイト</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
-  <!-- 譜面管理専用CSS -->
   <link rel="stylesheet" href="score.css">
 </head>
 
 <body>
-
-  <!-- 全体を統一レイアウトに -->
   <div class="score-container">
-
-    <!-- タイトル + AP/AC/O ナビゲーション -->
     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
       <div class="score-title">AP 譜面管理</div>
-
-      <!-- AP/AC/O 切り替え -->
       <nav class="score-nav">
         <a href="APscore.html">AP</a>
         <a href="ACscore.html">AC</a>
@@ -26,77 +18,28 @@
       </nav>
     </div>
 
-    <!-- 入力フォーム -->
+    <!-- 新規追加フォーム（編集には使用しない） -->
     <div class="score-card">
-      <div class="score-title" style="font-size:18px;">新規追加／編集</div>
+      <div class="score-title" style="font-size:18px;">新規追加</div>
 
       <form id="dataForm" onsubmit="return false;">
         <input type="hidden" id="row">
 
-        <div class="score-row">
-          <label>番号</label>
-          <input type="text" id="number">
-        </div>
+        <div class="score-row"><label>番号</label><input type="text" id="number"></div>
+        <div class="score-row"><label>曲名</label><input type="text" id="title"></div>
+        <div class="score-row"><label>作曲家</label><input type="text" id="composer"></div>
+        <div class="score-row"><label>編集者</label><input type="text" id="editor"></div>
+        <div class="score-row"><label>総譜</label><select id="score"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>1st</label><select id="part1"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>2nd</label><select id="part2"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Dola</label><select id="dola"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Cello</label><select id="cello"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Guitar</label><select id="guitar"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Bass</label><select id="bass"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Other</label><input type="text" id="other"></div>
 
-        <div class="score-row">
-          <label>曲名</label>
-          <input type="text" id="title">
-        </div>
-
-        <div class="score-row">
-          <label>作曲家</label>
-          <input type="text" id="composer">
-        </div>
-
-        <div class="score-row">
-          <label>編集者</label>
-          <input type="text" id="editor">
-        </div>
-
-        <div class="score-row">
-          <label>総譜</label>
-          <select id="score"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>1st</label>
-          <select id="part1"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>2nd</label>
-          <select id="part2"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Dola</label>
-          <select id="dola"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Cello</label>
-          <select id="cello"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Guitar</label>
-          <select id="guitar"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Bass</label>
-          <select id="bass"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Other</label>
-          <input type="text" id="other">
-        </div>
-
-        <!-- ボタン -->
-        <button class="score-btn" type="button" onclick="saveData()">追加／更新</button>
+        <button class="score-btn" type="button" onclick="saveData()">追加</button>
         <button class="score-btn" type="button" onclick="resetForm()" style="margin-left:8px; background:#888;">フォームをクリア</button>
-
       </form>
     </div>
 
@@ -118,24 +61,39 @@
     <table class="score-table" id="scoreTable">
       <thead>
         <tr>
-          <th>番号</th>
-          <th>曲名</th>
-          <th>作曲家</th>
-          <th>編集者</th>
-          <th>総譜</th>
-          <th>1st</th>
-          <th>2nd</th>
-          <th>Dola</th>
-          <th>Cello</th>
-          <th>Guitar</th>
-          <th>Bass</th>
-          <th>Other</th>
-          <th>操作</th>
+          <th>番号</th><th>曲名</th><th>作曲家</th><th>編集者</th>
+          <th>総譜</th><th>1st</th><th>2nd</th><th>Dola</th>
+          <th>Cello</th><th>Guitar</th><th>Bass</th><th>Other</th><th>操作</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
+  </div>
 
+  <!-- 編集モーダル -->
+  <div id="editModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+    <div class="modal-content" style="background:#fff; padding:20px; width:90%; max-width:500px; border-radius:8px;">
+      <h3>編集フォーム</h3>
+      <form id="editForm" onsubmit="return false;">
+        <input type="hidden" id="editRow">
+
+        <div class="score-row"><label>番号</label><input type="text" id="edit_number"></div>
+        <div class="score-row"><label>曲名</label><input type="text" id="edit_title"></div>
+        <div class="score-row"><label>作曲家</label><input type="text" id="edit_composer"></div>
+        <div class="score-row"><label>編集者</label><input type="text" id="edit_editor"></div>
+        <div class="score-row"><label>総譜</label><select id="edit_score"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>1st</label><select id="edit_part1"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>2nd</label><select id="edit_part2"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Dola</label><select id="edit_dola"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Cello</label><select id="edit_cello"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Guitar</label><select id="edit_guitar"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Bass</label><select id="edit_bass"><option></option><option>〇</option><option>×</option></select></div>
+        <div class="score-row"><label>Other</label><input type="text" id="edit_other"></div>
+
+        <button class="score-btn" type="button" onclick="saveEdit()">保存</button>
+        <button class="score-btn" type="button" onclick="closeModal()" style="background:#777; margin-left:8px;">閉じる</button>
+      </form>
+    </div>
   </div>
 
   <script src="APscore.js"></script>

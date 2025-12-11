@@ -131,56 +131,101 @@
   <div id="output"></div>
 
   <!-- 編集ポップアップ（楽器管理サイトと同じスタイル） -->
-  <div id="edit-modal">
+  <div id="edit-modal" style="
+    display:none;
+    position:fixed;
+    top:50%;
+    left:48%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:20px;
+    box-shadow:0 6px 24px rgba(0,0,0,0.2);
+    border-radius:8px;
+    z-index:1000;
+    width:360px;
+  ">
     <h3>データを編集</h3>
-
+  
     <input type="hidden" id="edit-row">
-
-    <div><input type="text" id="edit-number"   placeholder="番号"></div><br>
-    <div><input type="text" id="edit-title"    placeholder="曲名"></div><br>
+  
+    <div><input type="text" id="edit-number" placeholder="番号"></div><br>
+    <div><input type="text" id="edit-title" placeholder="曲名"></div><br>
     <div><input type="text" id="edit-composer" placeholder="作曲家"></div><br>
-    <div><input type="text" id="edit-editor"   placeholder="編集者"></div><br>
-
-    <div>
-      <select id="edit-score">
-        <option value="">総譜</option>
-        <option>〇</option>
-        <option>×</option>
-      </select>
-      <select id="edit-part1">
-        <option value="">1st</option>
-        <option>〇</option>
-        <option>×</option>
-      </select>
-      <select id="edit-part2">
-        <option value="">2nd</option>
-        <option>〇</option>
-        <option>×</option>
-      </select>
-      <select id="edit-dola">
-        <option value="">Dola</option>
-        <option>〇</option>
-        <option>×</option>
-      </select>
-      <select id="edit-cello">
-        <option value="">Cello</option>
-        <option>〇</option>
-        <option>×</option>
-      </select>
-      <select id="edit-guitar">
-        <option value="">Guitar</option>
-        <option>〇</option>
-        <option>×</option>
-      </select>
-      <select id="edit-bass">
-        <option value="">Bass</option>
-        <option>〇</option>
-        <option>×</option>
-      </select>
+    <div><input type="text" id="edit-editor" placeholder="編集者"></div><br>
+  
+    <!-- ラベル付きで項目を分かりやすくした -->
+    <div style="margin-bottom:8px; font-weight:bold;">パート（〇 / ×）</div>
+  
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+  
+      <div>
+        <label>総譜</label><br>
+        <select id="edit-score">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>1st</label><br>
+        <select id="edit-part1">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>2nd</label><br>
+        <select id="edit-part2">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Dola</label><br>
+        <select id="edit-dola">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Cello</label><br>
+        <select id="edit-cello">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Guitar</label><br>
+        <select id="edit-guitar">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Bass</label><br>
+        <select id="edit-bass">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
     </div>
+  
     <br>
     <div><input type="text" id="edit-other" placeholder="Other"></div><br>
-
+  
     <div style="text-align:right;">
       <button id="save-edit">保存</button>
       <button id="cancel-edit">キャンセル</button>

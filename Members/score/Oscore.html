@@ -1,141 +1,235 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>O 譜面管理サイト</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-
-  <!-- 譜面管理専用CSS -->
-  <link rel="stylesheet" href="score.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>O 譜面管理</title>
+  <style>
+    body { font-family: sans-serif; padding:20px; background:#f7f7f7; }
+    input, select { margin-right:8px; padding:6px; }
+    button { padding:6px 10px; margin-right:8px; cursor:pointer; }
+    table { width:100%; border-collapse:collapse; background:#fff; margin-top:12px; }
+    th, td { border:1px solid #ccc; padding:8px; text-align:center; }
+    th { background:#eee; }
+    tr:nth-child(even){ background:#fafafa; }
+    #edit-modal {
+      display:none;
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:white;
+      padding:20px;
+      box-shadow:0 6px 24px rgba(0,0,0,0.2);
+      border-radius:8px;
+      z-index:1000;
+      width:340px;
+    }
+    /* タイトル＋ナビ部分の軽い調整 */
+    .top-bar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:16px;
+    }
+    .nav-links a {
+      margin-left:10px;
+      text-decoration:none;
+      color:#007acc;
+    }
+    .nav-links a:hover {
+      text-decoration:underline;
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- 全体を統一レイアウトに -->
-  <div class="score-container">
+  <!-- 右上マニュアルアイコン（ファイル名は必要に応じて変更してください） -->
+  <a href="manual.pdf" target="_blank" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  ">
+    <img src="manual.png" alt="マニュアル" style="width:60px; height:auto;">
+  </a>
 
-    <!-- タイトル + AP/AC/O ナビゲーション -->
-    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
-      <div class="score-title">O 譜面管理</div>
+  <div class="top-bar">
+    <h1>O 譜面管理</h1>
+    <nav class="nav-links">
+      <a href="APscore.html">AP</a>
+      <a href="ACscore.html">AC</a>
+      <a href="Oscore.html">O</a>
+    </nav>
+  </div>
 
-      <!-- AP/AC/O 切り替え -->
-      <nav class="score-nav">
-        <a href="APscore.html">AP</a>
-        <a href="ACscore.html">AC</a>
-        <a href="Oscore.html">O</a>
-      </nav>
-    </div>
+  <h2>新しいデータを追加</h2>
+  <div id="form" style="margin-bottom: 10px;">
+    <!-- hidden: 行番号（新規のときは空） -->
+    <input type="hidden" id="row">
 
-    <!-- 入力フォーム -->
-    <div class="score-card">
-      <div class="score-title" style="font-size:18px;">新規追加／編集</div>
+    <input type="text" id="number"   placeholder="番号">
+    <input type="text" id="title"    placeholder="曲名">
+    <input type="text" id="composer" placeholder="作曲家">
+    <input type="text" id="editor"   placeholder="編集者">
 
-      <form id="dataForm" onsubmit="return false;">
-        <input type="hidden" id="row">
+    <select id="score">
+      <option value="">総譜</option>
+      <option>〇</option>
+      <option>×</option>
+    </select>
+    <select id="part1">
+      <option value="">1st</option>
+      <option>〇</option>
+      <option>×</option>
+    </select>
+    <select id="part2">
+      <option value="">2nd</option>
+      <option>〇</option>
+      <option>×</option>
+    </select>
+    <select id="dola">
+      <option value="">Dola</option>
+      <option>〇</option>
+      <option>×</option>
+    </select>
+    <select id="cello">
+      <option value="">Cello</option>
+      <option>〇</option>
+      <option>×</option>
+    </select>
+    <select id="guitar">
+      <option value="">Guitar</option>
+      <option>〇</option>
+      <option>×</option>
+    </select>
+    <select id="bass">
+      <option value="">Bass</option>
+      <option>〇</option>
+      <option>×</option>
+    </select>
 
-        <div class="score-row">
-          <label>番号</label>
-          <input type="text" id="number">
-        </div>
+    <input type="text" id="other" placeholder="Other">
 
-        <div class="score-row">
-          <label>曲名</label>
-          <input type="text" id="title">
-        </div>
+    <button id="add-btn">追加</button>
+    <button id="clear-form" style="background:#888; color:#fff;">フォームをクリア</button>
+  </div>
 
-        <div class="score-row">
-          <label>作曲家</label>
-          <input type="text" id="composer">
-        </div>
+  <h2>曲一覧</h2>
 
-        <div class="score-row">
-          <label>編集者</label>
-          <input type="text" id="editor">
-        </div>
+  <!-- 検索 ＋ フィルタボタン -->
+  <div style="margin-bottom:10px;">
+    <label for="searchInput">曲検索：</label>
+    <input type="text" id="searchInput" placeholder="キーワードを入力">
+    <button id="search-btn">検索</button>
+    <button id="show-all">全件表示</button>
+    <button id="show-deleted" style="background:#7a7a7a; color:#fff;">削除のみ</button>
+    <button id="show-others" style="background:#7a7a7a; color:#fff;">削除以外</button>
+  </div>
 
-        <div class="score-row">
-          <label>総譜</label>
-          <select id="score"><option></option><option>〇</option><option>×</option></select>
-        </div>
+  <button id="delete-selected" style="margin-bottom: 10px;">チェックした曲を削除</button>
 
-        <div class="score-row">
-          <label>1st</label>
-          <select id="part1"><option></option><option>〇</option><option>×</option></select>
-        </div>
+  <div id="output"></div>
 
-        <div class="score-row">
-          <label>2nd</label>
-          <select id="part2"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Dola</label>
-          <select id="dola"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Cello</label>
-          <select id="cello"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Guitar</label>
-          <select id="guitar"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Bass</label>
-          <select id="bass"><option></option><option>〇</option><option>×</option></select>
-        </div>
-
-        <div class="score-row">
-          <label>Other</label>
-          <input type="text" id="other">
-        </div>
-
-        <!-- ボタン -->
-        <button class="score-btn" type="button" onclick="saveData()">追加／更新</button>
-        <button class="score-btn" type="button" onclick="resetForm()" style="margin-left:8px; background:#888;">フォームをクリア</button>
-
-      </form>
-    </div>
-
-    <!-- 検索 -->
-    <div class="score-card" style="margin-bottom:20px;">
-      <div class="score-row">
-        <label for="searchInput">曲検索</label>
-        <input type="text" id="searchInput" placeholder="キーワードを入力">
-        <button class="score-btn" onclick="searchTitle()">検索</button>
+  <!-- 編集ポップアップ（楽器管理サイトと同じスタイル） -->
+  <div id="edit-modal" style="
+    display:none;
+    position:fixed;
+    top:50%;
+    left:48%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:20px;
+    box-shadow:0 6px 24px rgba(0,0,0,0.2);
+    border-radius:8px;
+    z-index:1000;
+    width:360px;
+  ">
+    <h3>データを編集</h3>
+  
+    <input type="hidden" id="edit-row">
+  
+    <div><input type="text" id="edit-number" placeholder="番号"></div><br>
+    <div><input type="text" id="edit-title" placeholder="曲名"></div><br>
+    <div><input type="text" id="edit-composer" placeholder="作曲家"></div><br>
+    <div><input type="text" id="edit-editor" placeholder="編集者"></div><br>
+  
+    <!-- ラベル付きで項目を分かりやすくした -->
+    <div style="margin-bottom:8px; font-weight:bold;">パート（〇 / ×）</div>
+  
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+  
+      <div>
+        <label>総譜</label><br>
+        <select id="edit-score">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
       </div>
-      <div style="margin-top:10px;">
-        <button class="score-btn" onclick="loadData()">全件表示</button>
-        <button class="score-btn" onclick="loadData('削除')" style="background:#7a7a7a;">削除のみ</button>
-        <button class="score-btn" onclick="loadData('その他')" style="background:#7a7a7a;">削除以外</button>
+  
+      <div>
+        <label>1st</label><br>
+        <select id="edit-part1">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
       </div>
+  
+      <div>
+        <label>2nd</label><br>
+        <select id="edit-part2">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Dola</label><br>
+        <select id="edit-dola">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Cello</label><br>
+        <select id="edit-cello">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Guitar</label><br>
+        <select id="edit-guitar">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Bass</label><br>
+        <select id="edit-bass">
+          <option value=""></option>
+          <option>〇</option>
+          <option>×</option>
+        </select>
+      </div>
+  
     </div>
-
-    <!-- テーブル -->
-    <table class="score-table" id="scoreTable">
-      <thead>
-        <tr>
-          <th>番号</th>
-          <th>曲名</th>
-          <th>作曲家</th>
-          <th>編集者</th>
-          <th>総譜</th>
-          <th>1st</th>
-          <th>2nd</th>
-          <th>Dola</th>
-          <th>Cello</th>
-          <th>Guitar</th>
-          <th>Bass</th>
-          <th>Other</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-
+  
+    <br>
+    <div><input type="text" id="edit-other" placeholder="Other"></div><br>
+  
+    <div style="text-align:right;">
+      <button id="save-edit">保存</button>
+      <button id="cancel-edit">キャンセル</button>
+    </div>
   </div>
 
   <script src="Oscore.js"></script>

@@ -30,17 +30,15 @@ function applyFilters() {
   // 削除のみ / 削除以外 フィルタ
   // ここでは「Other」列に「削除」という文字が入っているかどうかで判定しています。
   // 必要に応じて条件は変更してください。
+    const titleRaw = (row[2] ?? '').toString();
+  const title = titleRaw.trim(); // 前後スペース除去
+  
   if (currentFilterMode === 'deleted') {
-    data = data.filter(row => {
-      const other = (row[12] || '').toString();
-      return other.indexOf('削除') !== -1;
-    });
+    data = data.filter(row => ((row[2] ?? '').toString().trim() === '削除'));
   } else if (currentFilterMode === 'others') {
-    data = data.filter(row => {
-      const other = (row[12] || '').toString();
-      return other.indexOf('削除') === -1;
-    });
+    data = data.filter(row => ((row[2] ?? '').toString().trim() !== '削除'));
   }
+
 
   // 曲名による検索（タイトルは row[2]）
   if (keyword) {

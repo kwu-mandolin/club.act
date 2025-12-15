@@ -93,11 +93,12 @@ function displayTable(rows) {
     tr.appendChild(tdCheck);
 
     // データセル
-    values.forEach(val => {
-      const td = document.createElement('td');
-      td.innerText = val;
-      tr.appendChild(td);
-    });
+      values.forEach(val => {
+    const td = document.createElement('td');
+    td.innerText = (val === null || val === undefined) ? '' : val;
+    tr.appendChild(td);
+  });
+
 
     // 操作セル（編集）
     const tdOp = document.createElement('td');

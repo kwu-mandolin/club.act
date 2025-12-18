@@ -90,11 +90,24 @@ function displayTable(rows) {
     tr.appendChild(tdCheck);
 
     // データセル
-      values.forEach(val => {
+       values.forEach((val, i) => {
     const td = document.createElement('td');
-    td.innerText = (val === null || val === undefined) ? '' : val;
+  
+    // 基本：null/undefined は空欄
+    let v = (val ?? '').toString();
+  
+    // 変な説明文が混ざったときも空欄にする（今回の症状対策）
+    if (v.includes('Handle null or undefined values')) v = '';
+  
+    // 作曲家(2)・編集者(3)は「空欄にしたい列」なので、念のため trim して空欄化
+    if (i === 2 || i === 3) {
+      v = v.trim(); // 空白だけなら空欄になる
+    }
+  
+    td.innerText = v;
     tr.appendChild(td);
   });
+
 
 
     // 操作セル（編集）
